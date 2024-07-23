@@ -114,8 +114,8 @@ task Merge1000genomesAGD{
 
 
     String out_string = "AGD_TGP_" + chromosome
-    String agd_prefix = basename(~{agd_bed_file}, ".bed")
-    String TGP_prefix = basename(~{TGP_bed_file}, ".bed")
+    String agd_prefix = basename(agd_bed_file, ".bed")
+    String TGP_prefix = basename(TGP_bed_file, ".bed")
 
 
     runtime {
