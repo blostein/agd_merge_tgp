@@ -1,0 +1,5 @@
+version: 1.2
+workflows:
+  - subclass: WDL
+    primaryDescriptorPath: /agd_combine_TGP.wdl
+    name: agd_combine_TGP
