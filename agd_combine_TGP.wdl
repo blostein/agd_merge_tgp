@@ -129,7 +129,7 @@ task Merge1000genomesAGD{
     }
 
     command{
-        plink2 \
+        plink \
             --bfile ~{agd_prefix} \
             --bmerge ~{TGP_prefix} \
             --make-bed \
