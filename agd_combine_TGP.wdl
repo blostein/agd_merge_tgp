@@ -77,6 +77,7 @@ task SubsetChromosomeTGP {
     command{ 
          plink2 \
             --pgen ~{pgen_file} --pvar ~{pvar_file} --psam ~{psam_file} \
+            --allow-extra-chr \
             --chr ~{in_chromosome} \
             --remove ~{relatives_exclude} \
             --make-bed \
