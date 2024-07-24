@@ -119,6 +119,8 @@ task Merge1000genomesAGD{
     String out_string = "AGD_TGP_" + chromosome
     String agd_prefix = basename(agd_bed_file, ".bed")
     String TGP_prefix = basename(TGP_bed_file, ".bed")
+    String agd_prefix_rename= agd_prefix + "_renamed"
+    String agd_prefix_flip = agd_prefix + "_flipped"
 
     String relocated_bed = agd_prefix + ".bed"
     String relocated_bim = agd_prefix + ".bim"
@@ -148,12 +150,31 @@ task Merge1000genomesAGD{
 
         plink \
             --bfile ~{agd_prefix} \
+            --set-all-var-ids @:#:\$r:\$a \
+            --new-id-max-allele-len 1000 \
+            --make-bed \ 
+            --out ~{agd_prefix_rename}
+
+        plink \
+            --bfile ~{agd_prefix_rename} \
             --bmerge ~{TGP_prefix} \
             --make-bed \
             --out merged_beds_files
+
+        plink \
+            --bfile ~{agd_prefix_rename} \
+            --flip merged_beds_files.missnp \
+            --make-bed \
+            --out ~{agd_prefix_flip}
+
+        plink \
+            --bfile ~{agd_prefix_flip} \
+            --bmerge ~{TGP_prefix} \
+            --make-bed \
+            --out merged_beds_files2
         
         plink2 \
-            --bfile merged_beds_files \
+            --bfile merged_beds_files2 \
             --make-pgen \
             --out ~{out_string}
     }
