@@ -124,7 +124,7 @@ task Merge1000genomesAGD{
     String relocated_bim = agd_prefix + ".bim"
     String relocated_fam = agd_prefix + ".fam"
 
-    String rek=located_tgp_bed = TGP_prefix + ".bed"
+    String relocated_tgp_bed = TGP_prefix + ".bed"
     String relocated_tgp_bim = TGP_prefix + ".bim"
     String relocated_tgp_fam = TGP_prefix + ".fam"
 
