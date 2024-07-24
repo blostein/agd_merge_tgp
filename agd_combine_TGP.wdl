@@ -15,6 +15,8 @@ workflow agd_combine_TGP {
         File thousand_genomes_psam_file
         File thousand_genomes_pvar_file
         File thousand_genomes_pgen_file
+
+        File relatives_exclude
     }
 
     call SubsetChromosomeTGP {
@@ -23,7 +25,7 @@ workflow agd_combine_TGP {
             pvar_file = thousand_genomes_pvar_file,
             psam_file = thousand_genomes_psam_file,
             chromosome = source_chromosome,
-            relatives_exclude = source_fam_file,
+            relatives_exclude = relatives_exclude,
     }
 
     call Merge1000genomesAGD {
