@@ -120,6 +120,14 @@ task Merge1000genomesAGD{
     String agd_prefix = basename(agd_bed_file, ".bed")
     String TGP_prefix = basename(TGP_bed_file, ".bed")
 
+    String relocated_bed = agd_prefix + ".bed"
+    String relocated_bim = agd_prefix + ".bim"
+    String relocated_fam = agd_prefix + ".fam"
+
+    String rek=located_tgp_bed = TGP_prefix + ".bed"
+    String relocated_tgp_bim = TGP_prefix + ".bim"
+    String relocated_tgp_fam = TGP_prefix + ".fam"
+
 
     runtime {
         docker: docker
@@ -129,13 +137,22 @@ task Merge1000genomesAGD{
     }
 
     command{
+
+        ln ~{agd_bed_file} ./~{relocated_bed}
+        ln ~{agd_bim_file} ./~{relocated_bim}
+        ln ~{agd_fam_file} ./~{relocated_fam}
+
+        ln ~{TGP_bed_file} ./~{relocated_tgp_bed}
+        ln ~{TGP_bim_file} ./~{relocated_tgp_bim}
+        ln ~{TGP_fam_file} ./~{relocated_tgp_fam}
+
         plink \
             --bfile ~{agd_prefix} \
             --bmerge ~{TGP_prefix} \
             --make-bed \
             --out merged_beds_files
         
-        plink2 \ 
+        plink2 \
             --bfile merged_beds_files \
             --make-pgen \
             --out ~{out_string}
