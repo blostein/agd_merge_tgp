@@ -133,6 +133,11 @@ task Merge1000genomesAGD{
             --bfile ~{agd_prefix} \
             --bmerge ~{TGP_prefix} \
             --make-bed \
+            --out merged_beds_files
+        
+        plink2 \ 
+            --bfile merged_beds_files \
+            --make-pgen \
             --out ~{out_string}
     }
 
