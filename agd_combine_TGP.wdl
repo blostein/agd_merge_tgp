@@ -39,9 +39,9 @@ workflow agd_combine_TGP {
     }
 
     output {
-        File AGD_TGP_bed_file = Merge1000genomesAGD.out_bed_file
-        File AGD_TGP_bim_file = Merge1000genomesAGD.out_bim_file
-        File AGD_TGP_fam_file = Merge1000genomesAGD.out_fam_file
+        File AGD_TGP_pgen_file = Merge1000genomesAGD.out_pgen_file
+        File AGD_TGP_pvar_file = Merge1000genomesAGD.out_pvar_file
+        File AGD_TGP_psak_file = Merge1000genomesAGD.out_psam_file
     }
 }
 
@@ -142,8 +142,8 @@ task Merge1000genomesAGD{
     }
 
     output{
-        File out_bed_file = out_string + ".bed"
-        File out_bim_file = out_string + ".bim"
-        File out_fam_file = out_string + ".fam"
+        File out_pgen_file = out_string + ".pgen"
+        File out_pvar_file = out_string + ".pvar"
+        File out_psam_file = out_string + ".psam"
     }
 }
