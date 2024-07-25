@@ -163,7 +163,7 @@ task Merge1000genomesAGD{
 
         plink \
             --bfile ~{agd_prefix_rename} \
-            --flip merged_beds_files.missnp \
+            --flip merged_beds_files-merge.missnp \
             --make-bed \
             --out ~{agd_prefix_flip}
 
