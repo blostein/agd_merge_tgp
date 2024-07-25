@@ -148,7 +148,7 @@ task Merge1000genomesAGD{
         ln ~{TGP_bim_file} ./~{relocated_tgp_bim}
         ln ~{TGP_fam_file} ./~{relocated_tgp_fam}
 
-        plink \
+        plink2 \
             --bfile ~{agd_prefix} \
             --set-all-var-ids @:#:\$r:\$a \
             --new-id-max-allele-len 1000 \
