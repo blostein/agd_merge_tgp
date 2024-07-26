@@ -152,7 +152,7 @@ task Merge1000genomesAGD{
         plink2 \
             --bfile ~{agd_prefix} \
             --set-all-var-ids @:#:\$r:\$a \
-            --new-id-max-allele-len 1000 \
+            --new-id-max-allele-len 50 \
             --make-bed \
             --out ~{agd_prefix_rename}
 
