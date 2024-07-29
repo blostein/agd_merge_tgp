@@ -131,6 +131,9 @@ task Merge1000genomesAGD{
     String relocated_tgp_bim = TGP_prefix + ".bim"
     String relocated_tgp_fam = TGP_prefix + ".fam"
 
+    String agd_snp_list = agd_prefix + ".snplist"
+    String TGP_snp_list = TGP_prefix + ".snplist"
+
 
     runtime {
         docker: docker
@@ -152,9 +155,19 @@ task Merge1000genomesAGD{
         plink2 \
             --bfile ~{agd_prefix} \
             --set-all-var-ids @:#:\$r:\$a \
-            --new-id-max-allele-len 50 \
+            --new-id-max-allele-len 10 truncate \
             --make-bed \
             --out ~{agd_prefix_rename}
+
+        plink2 \
+            --bfile ~{agd_prefix} \
+            --write-snplist \
+            --out ~{agd_prefix} 
+        
+        plink2 \
+            --bfile ~{TGP_prefix} \
+            --write-snplist \
+            --out ~{TGP_prefix}
 
         plink \
             --bfile ~{agd_prefix_rename} \
@@ -162,15 +175,19 @@ task Merge1000genomesAGD{
             --make-bed \
             --out merged_beds_files
 
-        plink \
+        plink2 \
             --bfile ~{agd_prefix_rename} \
             --exclude merged_beds_files-merge.missnp \
+            --extract ~{agd_snp_list} ~{TGP_snp_list} \
+            --extract-intersect \
             --make-bed \
             --out ~{agd_prefix_2}
 
-        plink \
+        plink2 \
             --bfile ~{TGP_prefix} \
             --exclude merged_beds_files-merge.missnp \
+            --extract ~{agd_snp_list} ~{TGP_snp_list} \
+            --extract-intersect \
             --make-bed \
             --out ~{TGP_prefix_2}
 
