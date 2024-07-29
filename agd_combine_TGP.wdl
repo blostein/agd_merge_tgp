@@ -178,16 +178,14 @@ task Merge1000genomesAGD{
         plink2 \
             --bfile ~{agd_prefix_rename} \
             --exclude merged_beds_files-merge.missnp \
-            --extract ~{agd_snp_list} ~{TGP_snp_list} \
-            --extract-intersect \
+            --extract-intersect ~{agd_snp_list} ~{TGP_snp_list} \
             --make-bed \
             --out ~{agd_prefix_2}
 
         plink2 \
             --bfile ~{TGP_prefix} \
             --exclude merged_beds_files-merge.missnp \
-            --extract ~{agd_snp_list} ~{TGP_snp_list} \
-            --extract-intersect \
+            --extract-intersect ~{agd_snp_list} ~{TGP_snp_list} \
             --make-bed \
             --out ~{TGP_prefix_2}
 
