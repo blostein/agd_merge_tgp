@@ -131,7 +131,7 @@ task Merge1000genomesAGD{
     String relocated_tgp_bim = TGP_prefix + ".bim"
     String relocated_tgp_fam = TGP_prefix + ".fam"
 
-    String agd_snp_list = agd_prefix + ".snplist"
+    String agd_snp_list = agd_prefix + "_renamed.snplist"
     String TGP_snp_list = TGP_prefix + ".snplist"
 
 
@@ -160,9 +160,9 @@ task Merge1000genomesAGD{
             --out ~{agd_prefix_rename}
 
         plink2 \
-            --bfile ~{agd_prefix} \
+            --bfile ~{agd_prefix_rename} \
             --write-snplist \
-            --out ~{agd_prefix} 
+            --out ~{agd_prefix_rename} 
         
         plink2 \
             --bfile ~{TGP_prefix} \
