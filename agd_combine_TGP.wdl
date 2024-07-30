@@ -41,7 +41,7 @@ workflow agd_combine_TGP {
     output {
         File AGD_TGP_pgen_file = Merge1000genomesAGD.out_pgen_file
         File AGD_TGP_pvar_file = Merge1000genomesAGD.out_pvar_file
-        File AGD_TGP_psak_file = Merge1000genomesAGD.out_psam_file
+        File AGD_TGP_psam_file = Merge1000genomesAGD.out_psam_file
     }
 }
 
